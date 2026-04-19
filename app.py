@@ -226,7 +226,7 @@ st.markdown("""
 @st.cache_data
 def load_vdem():
     # Replace with your direct download URL
-    url = "https://www.dropbox.com/scl/fi/6v3q7vq9y8wumsnvff2dh/V-Dem-CY-Full-Others-v16.csv?rlkey=vdvkuy2tdwd5nmfx7ocnei8s3&st=rt2p553n&dl=0"
+    url = "https://www.dropbox.com/scl/fi/6v3q7vq9y8wumsnvff2dh/V-Dem-CY-Full-Others-v16.csv?rlkey=vdvkuy2tdwd5nmfx7ocnei8s3&st=rt2p553n&dl=1"
     cols_to_load = ['country_name', 'year', 'v2xel_frefair', 'v2x_civlib', 'v2x_corr', 'v2cacamps', 'v2smpolsoc']
     return pd.read_csv(url, usecols=cols_to_load)
 
