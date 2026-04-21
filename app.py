@@ -794,7 +794,7 @@ with tab5:
     st.dataframe(accel_top, use_container_width=True)
 
 # ================================================================
-# TAB 6: CORRELATION HEATMAP
+# TAB 6: GLOBAL OUTLOOK
 # ================================================================
 with tab6:
     st.markdown('<div class="section-header">Indicator Correlation Heatmap</div>', unsafe_allow_html=True)
