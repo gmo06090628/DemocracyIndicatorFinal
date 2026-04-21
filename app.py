@@ -216,7 +216,7 @@ _YAX = dict(**_AX)
 st.markdown("""
 <div class="main-header">
     <div class="main-title">🌍 Democracy Monitor</div>
-    <div class="main-subtitle">Democratic Backsliding Dashboard · V-Dem Dataset</div>
+    <div class="main-subtitle">Democratic Backsliding Dashboard</div>
 </div>
 """, unsafe_allow_html=True)
 
