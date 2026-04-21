@@ -296,9 +296,9 @@ INDICATORS = [i for i in ALL_INDICATORS if i in vdem.columns and vdem[i].notna()
 
 INDICATOR_DESCRIPTIONS = {
     'Free and Fair Elections': 'Whether elections are free from fraud, irregularities, and intimidation (v2xel_frefair)',
-    'Civil Liberties': 'Freedom of expression, association, movement, and personal integrity (v2x_civlib)',
-    'Polarization': 'Combined political + societal polarization, inverted — higher = less polarized (v2cacamps + v2smpetap)',
-    'Political Corruption': 'Executive, legislative & judicial corruption composite, inverted — higher = less corrupt (v2x_corr)',
+    'Civil Liberties': 'Freedom of expression, association, movement, and integrity (v2x_civlib)',
+    'Polarization': 'Composite of social and political polarization (v2cacamps + v2smpetap)',
+    'Political Corruption': 'Composite of executive, legislative, & judicial corruption (v2x_corr)',
 }
 
 # ---------------------------
@@ -455,7 +455,7 @@ with tab1:
             (c1, "BACKSLIDING RISK", row.get('Backsliding Risk'), None),
             (c2, "ALERT TIER", row.get('Alert Tier'), None),
             (c3, "DEMOCRATIC HEALTH", row.get('Democratic Health'), row.get('Health_1yr')),
-            (c4, "1-YEAR CHANGE", row.get('Health_1yr'), None),
+            (c4, "CHANGE OVER PAST YEAR", row.get('Health_1yr'), None),
             (c5, "ACCELERATION", row.get('Health_accel'), None),
         ]:
             dval = f"{delta:+.3f}" if delta is not None and not pd.isna(delta) else ""
@@ -549,7 +549,7 @@ with tab1:
 
         # --- Acceleration chart ---
         st.markdown('<div class="section-header">Backsliding Acceleration (1yr vs 3yr avg)</div>', unsafe_allow_html=True)
-        st.caption("Negative values = deteriorating. Bars below zero AND getting more negative = accelerating backsliding.")
+        st.caption("Negative Values Below Zero Refer to Accelerating Deteriation.")
         accel_ts = country_ts[['Year','Health_1yr','Health_accel']].dropna().tail(30)
         fig_a = go.Figure()
         fig_a.add_trace(go.Bar(
@@ -582,7 +582,7 @@ with tab1:
 # TAB 2: WATCHLIST
 # ================================================================
 with tab2:
-    st.markdown('<div class="section-header">Backsliding Early Warning Watchlist</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Backsliding Warning Watchlist</div>', unsafe_allow_html=True)
     st.caption("All countries showing CRITICAL, WATCH, or MONITOR signals. Sorted by backsliding risk.")
 
     tier_filter = st.multiselect(
@@ -608,7 +608,7 @@ with tab2:
     )
 
     # Drill-down
-    st.markdown('<div class="section-header">Watchlist Drill-Down</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Country Analysis</div>', unsafe_allow_html=True)
     if not watchlist.empty:
         watch_country = st.selectbox("Select Country", watchlist['Country'].unique(), key="watch_drill")
         if watch_country:
@@ -634,7 +634,7 @@ with tab2:
 # TAB 3: GLOBAL MAP
 # ================================================================
 with tab3:
-    st.markdown('<div class="section-header">Global Backsliding Risk Map</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Global Democracy Map</div>', unsafe_allow_html=True)
 
     map_metric = st.selectbox(
         "Map Metric",
@@ -673,7 +673,7 @@ with tab3:
 # ================================================================
 with tab4:
     st.markdown('<div class="section-header">Country Comparison</div>', unsafe_allow_html=True)
-    st.caption("Compare up to 5 countries across all indicators and trend windows.")
+    st.caption("Compare up to 5 countries across all 4 indicators.")
 
     compare_countries = st.multiselect(
         "Select Countries to Compare",
@@ -746,10 +746,10 @@ with tab4:
         st.dataframe(comp_data[cmp_cols].round(3).set_index('Country'), use_container_width=True)
 
 # ================================================================
-# TAB 5: LEADERBOARD
+# TAB 5: Deterioration
 # ================================================================
 with tab5:
-    st.markdown('<div class="section-header">Most Deteriorated (5-Year)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Most Deteriorated Over 5-Years</div>', unsafe_allow_html=True)
     st.caption("Countries with the largest drops in Democratic Health over the past 5 years.")
 
     deteriorated = latest.sort_values('Health_5yr').head(20)[
