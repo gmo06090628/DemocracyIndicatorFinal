@@ -295,10 +295,10 @@ ALL_INDICATORS = ['Free and Fair Elections', 'Civil Liberties', 'Polarization', 
 INDICATORS = [i for i in ALL_INDICATORS if i in vdem.columns and vdem[i].notna().sum() > 0]
 
 INDICATOR_DESCRIPTIONS = {
-    'Free and Fair Elections': 'Whether elections are free from fraud, irregularities, and intimidation (v2xel_frefair)',
-    'Civil Liberties': 'Freedom of expression, association, movement, and integrity (v2x_civlib)',
-    'Polarization': 'Composite of social and political polarization (v2cacamps + v2smpetap)',
-    'Political Corruption': 'Composite of executive, legislative, & judicial corruption (v2x_corr)',
+    'Free and Fair Elections': 'Whether elections are free from fraud, irregularities, and intimidation',
+    'Civil Liberties': 'Freedom of expression, association, movement, and integrity',
+    'Polarization': 'Composite of social and political polarization',
+    'Political Corruption': 'Composite of executive, legislative, & judicial corruption',
 }
 
 # ---------------------------
