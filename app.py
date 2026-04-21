@@ -427,8 +427,8 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "⚠️ Watchlist",
     "🗺️ Global Map",
     "🔀 Comparison",
-    "📈 Leaderboard",
-    "🔥 Heatmap"
+    "📈 Deteriation",
+    "🌍 Global Outlook"
 ])
 
 # ================================================================
