@@ -344,13 +344,13 @@ def alert_tier(row):
     c5 = row.get('Health_5yr', 0) or 0
     ac = row.get('Health_accel', 0) or 0
     if c1 <= -0.06 or s >= 0.65 or ac <= -0.04:
-        return "🔴 CRITICAL"
+        return "🔴"
     elif c5 <= -0.05 or s >= 0.42:
-        return "🟠 WATCH"
+        return "🟠"
     elif c1 < -0.02 or c5 < -0.02:
-        return "🟡 MONITOR"
+        return "🟡"
     else:
-        return "🟢 STABLE"
+        return "🟢"
 
 latest['Alert Tier'] = latest.apply(alert_tier, axis=1)
 
